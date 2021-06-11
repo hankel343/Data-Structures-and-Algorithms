@@ -9,8 +9,7 @@ void Vector::resize(int newCapacity) {
 	for (int i{ 0 }; i < newCapacity; i++) {
 		if (i < m_capacity) {
 			items[i] = temp[i];
-		}
-		else {
+		} else {
 			items[i] = 0;
 		}
 	}
@@ -30,9 +29,14 @@ Vector::Vector()
 }
 
 Vector::Vector(int capacity)
-	: m_size{ 0 }, m_capacity{ capacity }, items{ nullptr }
 {
-	items = new int[capacity] {0}; //Dynamically allocating array of specified capacity 
+	if (capacity < 1) {
+		cout << "You cannot make a vector of this capacity.\n";
+	} else {
+		m_size = 0;
+		m_capacity = capacity;
+		items = new int[capacity] {0}; //Dynamically allocating array of specified capacity 
+	}
 }
 
 int Vector::size() {
@@ -106,7 +110,9 @@ void Vector::push(int newItem) {
 }
 
 void Vector::insert(int index, int item) {
-	if (isFull()) return; //There is space for another element in the Vector.
+	if (isFull()) {
+		resize(m_size * 2);
+	}
 
 	if (index < m_size) { //index is within a valid range
 		m_size++;
@@ -118,15 +124,7 @@ void Vector::insert(int index, int item) {
 }
 
 void Vector::prepend(int item) {
-	if (isFull()) {
-		resize(m_size * 2);
-	}
-
-	m_size++;
-	for (int i{ m_size - 1 }; i > 0; i--) {
-		items[i] = items[i - 1];
-	}
-	items[0] = item;
+	insert(0, item);
 }
 
 int& Vector::operator[](int index) {
