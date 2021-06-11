@@ -35,6 +35,12 @@ int vector::pop_back() {
 	else {
 		int temp{ items[m_size - 1] };
 		m_size--;
+
+		//Check for resize if current size is atleast 1/4 of capacity
+		if (m_size * 4 <= m_capacity) {
+			resize(m_capacity / 2);
+		}
+
 		return temp;
 	}
 }
@@ -46,6 +52,23 @@ void vector::deleteIndex(int index) {
 		items[i] = items[i + 1];
 	}
 	m_size--;
+
+	//Check for resize if current size is atleast 1/4 of capacity
+	if (m_size * 4 <= m_capacity) {
+		resize(m_capacity / 2);
+	}
+}
+
+void vector::remove(int item) {
+	if (m_size == 0) return;
+
+	bool found{ false };
+	for (int i{ 0 }; i < m_size && !found; i++) {
+		if (items[i] == item) {
+			found = true;
+			deleteIndex(i);
+		}
+	}
 }
 
 void vector::push(int newItem) {
@@ -100,7 +123,7 @@ int vector::find(int item) {
 	return -1; //Item not found
 }
 
-/* Private Method */
+/* Private Methods */
 void vector::resize(int newCapacity) {
 	int* temp{ items }; //Temporary pointer on old array
 	items = new int[newCapacity];

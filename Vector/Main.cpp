@@ -3,11 +3,15 @@
 using std::cout; using std::endl;
 
 int main(void) {
-	vector myVector(5);
+	vector myVector(16);
 
-	for (int i{ 0 }; i < 6; i++) {
+	for (int i{ 0 }; i < 16; i++) {
 		myVector.push(i);
 	}
+
+	myVector.deleteIndex(5);
+	myVector.deleteIndex(4);
+	myVector.deleteIndex(3);
 
 	cout << "Testing operator overloading: \n";
 	for (int i{ 0 }; i < myVector.size(); i++) {
@@ -64,6 +68,13 @@ int main(void) {
 	myVector.prepend(78);
 	myVector.prepend(25);
 	myVector.prepend(14);
+
+	for (int i{ 0 }; i < myVector.size(); i++) {
+		cout << myVector[i] << " ";
+	}
+
+	cout << "\nTesting the remove function: \n";
+	myVector.remove(78);
 
 	for (int i{ 0 }; i < myVector.size(); i++) {
 		cout << myVector[i] << " ";
