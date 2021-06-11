@@ -70,6 +70,18 @@ void vector::insert(int index, int item) {
 	}
 }
 
+void vector::prepend(int item) {
+	if (isFull()) {
+		resize(m_size * 2);
+	}
+
+	m_size++;
+	for (int i{ m_size - 1 }; i > 0; i--) {
+		items[i] = items[i - 1];
+	}
+	items[0] = item;
+}
+
 int& vector::operator[](int index) {
 	if (index >= m_size) {
 		throw OutOfBoundsIndexException();

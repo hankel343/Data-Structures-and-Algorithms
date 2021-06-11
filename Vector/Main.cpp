@@ -5,7 +5,7 @@ using std::cout; using std::endl;
 int main(void) {
 	vector myVector(5);
 
-	for (int i{ 0 }; i < 6; i++) {
+	/*for (int i{ 0 }; i < 6; i++) {
 		myVector.push(i);
 	}
 
@@ -55,6 +55,17 @@ int main(void) {
 		catch (OutOfBoundsIndexException& e) {
 			std::cerr << "Exception caught: out of bounds error caught.\n";
 		}
+	}*/
+
+	myVector.prepend(12);
+	myVector.prepend(23);
+	myVector.prepend(56);
+	myVector.prepend(78);
+	myVector.prepend(25);
+	myVector.prepend(14);
+
+	for (int i{ 0 }; i < myVector.size(); i++) {
+		cout << myVector[i] << " ";
 	}
 
 	return 0;
