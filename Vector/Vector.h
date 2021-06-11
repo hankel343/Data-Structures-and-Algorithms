@@ -5,7 +5,7 @@ using std::cout; using std::endl;
 class EmptyVectorException {};
 class OutOfBoundsIndexException {};
 
-class vector {
+class Vector {
 private:
 	int m_size;
 	int m_capacity;
@@ -20,8 +20,8 @@ private:
 
 public:
 	//constructor
-	vector(); //done
-	vector(int capacity); //done
+	Vector(); //done
+	Vector(int capacity); //done
 	int size(); //done
 	int capacity(); //done
 	bool empty(); //done
@@ -36,6 +36,9 @@ public:
 
 	//[] operator overload
 	int& operator[](int index);
+
+	//Destructor:
+	~Vector();
 };
 
 #endif

@@ -1,9 +1,9 @@
 #include <iostream>
-#include "vector.h"
+#include "Vector.h"
 using std::cout; using std::endl;
 
 int main(void) {
-	vector myVector(16);
+	Vector myVector(16);
 
 	for (int i{ 0 }; i < 16; i++) {
 		myVector.push(i);
