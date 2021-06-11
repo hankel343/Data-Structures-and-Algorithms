@@ -38,6 +38,16 @@ int vector::pop_back() {
 		return temp;
 	}
 }
+
+void vector::deleteIndex(int index) {
+	if (m_size == 0) throw EmptyVectorException();
+
+	for (int i{ index }; i < m_size - 1; i++) {
+		items[i] = items[i + 1];
+	}
+	m_size--;
+}
+
 void vector::push(int newItem) {
 	if (m_size >= m_capacity) {
 		resize(m_size * 2);

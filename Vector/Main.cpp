@@ -19,6 +19,22 @@ int main(void) {
 		}
 	}
 
+	cout << "\nTest deleteIndex function: \n";
+	try {
+		myVector.deleteIndex(2);
+	} catch (EmptyVectorException &e) {
+		std::cerr << "\nException caught: vector was empty.";
+	}
+	
+
+	for (int i{ 0 }; i < myVector.size(); i++) {
+		try {
+			cout << myVector[i] << " ";
+		} catch (OutOfBoundsIndexException &e) {
+			std::cerr << "Exception caught: out of bounds error caught.\n";
+		}
+	}
+
 	cout << "\nTesting the popping function: \n";
 	for (int i{ 0 }; i < 3; i++) {
 		try {

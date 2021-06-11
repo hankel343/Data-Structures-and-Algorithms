@@ -30,7 +30,7 @@ public:
 	void insert(int index, int item); //TO DO
 	void prepend(int item); //TO DO
 	int pop_back(); //remove from end, return value //done
-	void deleteIndex(int item); //delete item at given index, shift all elements to left //TODO
+	void deleteIndex(int index); //delete item at given index, shift all elements to left //TODO
 	void remove(int item); //looks for value and removes index holding it //TODO
 	int find(int item); //looks for value and returns first index with that value //TODO
 
