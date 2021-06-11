@@ -5,7 +5,7 @@ using std::cout; using std::endl;
 int main(void) {
 	vector myVector(5);
 
-	/*for (int i{ 0 }; i < 6; i++) {
+	for (int i{ 0 }; i < 6; i++) {
 		myVector.push(i);
 	}
 
@@ -19,7 +19,7 @@ int main(void) {
 		}
 	}
 
-	cout << "\nTest deleteIndex function: \n";
+	cout << "\nTest deleteIndex method: \n";
 	try {
 		myVector.deleteIndex(2);
 	} catch (EmptyVectorException &e) {
@@ -35,7 +35,7 @@ int main(void) {
 		}
 	}
 
-	cout << "\nTesting the popping function: \n";
+	cout << "\nTesting the popping method: \n";
 	for (int i{ 0 }; i < 3; i++) {
 		try {
 			cout << myVector.pop_back() << " ";
@@ -45,7 +45,7 @@ int main(void) {
 		}
 	}
 
-	cout << "\nTesting the insert function: \n";
+	cout << "\nTesting the insert method: \n";
 	myVector.insert(2, 7);
 
 	for (int i{ 0 }; i < myVector.size(); i++) {
@@ -55,8 +55,9 @@ int main(void) {
 		catch (OutOfBoundsIndexException& e) {
 			std::cerr << "Exception caught: out of bounds error caught.\n";
 		}
-	}*/
+	}
 
+	cout << "\nTesting the prepend method.\n";
 	myVector.prepend(12);
 	myVector.prepend(23);
 	myVector.prepend(56);
