@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DS", "DS", "{CCF3D679-0EDA-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DFS_Graph", "DFS_Graph\DFS_Graph.vcxproj", "{01C467C5-4E1B-43F1-9231-2975BBD8919E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{EA8E8387-C4AE-41EE-BF05-84CBEF0DB715}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -50,6 +52,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{466A59D6-988C-4AEC-AB29-4D737C86AC0C} = {CCF3D679-0EDA-474E-95A0-FC0B535F3526}
 		{6289C66F-A4A6-491C-9A00-DB363147E596} = {CCF3D679-0EDA-474E-95A0-FC0B535F3526}
+		{01C467C5-4E1B-43F1-9231-2975BBD8919E} = {EA8E8387-C4AE-41EE-BF05-84CBEF0DB715}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5B602E2-0F2B-449C-997B-8C9A160398B4}
