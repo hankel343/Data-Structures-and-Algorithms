@@ -15,5 +15,4 @@ void Graph::DFS(int v) {
 		if (!visited[*i])
 			DFS(*i);
 	}
-
 }
