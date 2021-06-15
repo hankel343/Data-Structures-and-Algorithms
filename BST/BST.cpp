@@ -245,11 +245,31 @@ void BST::printByLevel() {
 	levelOrder(rootPtr);
 }
 
+//=====================
+/* createMinimalTree */
+//=====================
+Node* createMinimalBST(std::vector<int> arr) {
+	return createMinimalBST(arr, 0, arr.size() - 1);
+}
+
+//Recursive util. to public function of same name
+Node* createMinimalBST(std::vector<int> arr, int start, int end) {
+	if (end < start) { //Array is empty or base of recursion has been found, will make bottom nodes leaves
+		return nullptr;
+	}
+
+	int mid = (start + end) / 2; //Determine the middle array index.
+	Node* n = new Node(arr[mid]); //Create new node with array at mid's value
+	n->left = createMinimalBST(arr, start, mid - 1); //n's left child will be assigned a return value (mem. address) 
+	n->right = createMinimalBST(arr, mid + 1, end); //Same situation as one line above but for n's right child
+	return n; //Return memory address to previous activation record in the stack
+}
+
 //================
 /* getSuccessor */
 //================
 
-BST::Node* BST::getSuccessor(int data) {
+Node* BST::getSuccessor(int data) {
 	Node* current = find(rootPtr, data); //returns mem. add. of node with specified data.
 	if (current == nullptr) return nullptr;
 
@@ -273,7 +293,7 @@ BST::Node* BST::getSuccessor(int data) {
 	}
 }
 
-BST::Node* BST::find(Node* rootPtr, int data) {
+Node* BST::find(Node* rootPtr, int data) {
 	if (data == rootPtr->m_data) { //Node with specified data found.
 		return rootPtr;
 	}
@@ -288,7 +308,7 @@ BST::Node* BST::find(Node* rootPtr, int data) {
 	}
 }
 
-BST::Node* BST::getSubTreeMin(Node* p) {
+Node* BST::getSubTreeMin(Node* p) {
 	if (p == nullptr) return nullptr;
 
 	while (p->left) {

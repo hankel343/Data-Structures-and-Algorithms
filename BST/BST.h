@@ -3,22 +3,23 @@
 
 #include <iostream>
 #include <queue>
+#include <vector>
 using std::cout; using std::endl;
+
+struct Node {
+	int m_data;
+	Node* left;
+	Node* right;
+
+	//Constructors:
+	Node() //Default
+		: m_data{ 0 }, left{ nullptr }, right{ nullptr } {};
+	Node(int data) //Overloaded
+		: m_data{ data }, left{ nullptr }, right{ nullptr } {};
+};
 
 class BST {
 private:
-	struct Node {
-		int m_data;
-		Node* left;
-		Node* right;
-
-		//Constructors:
-		Node() //Default
-			: m_data{ 0 }, left{ nullptr }, right{ nullptr } {};
-		Node(int data) //Overloaded
-			: m_data{ data }, left{ nullptr }, right{ nullptr } {};
-	};
-
 	/* Attributes */
 	Node* rootPtr; //Pointer to the root of the tree.
 
@@ -54,6 +55,7 @@ private:
 	Node* find(Node* rootPtr, int data); //walks tree to find node with specified data from root node.
 	int getPredecessor(Node* p);
 	Node* getSubTreeMin(Node* p); //Returns the mem. address of the minimum value in the passed subtree.
+	Node* createMinimalBST(std::vector<int> array, int start, int end); //Overloaded recursive utility to public func. of same name
 
 public:
 	//Constructor
@@ -71,6 +73,7 @@ public:
 	void printAscending();
 	void printDescending();
 	void printByLevel();
+	Node* createMinimalBST(std::vector<int> arr);
 	Node* getSuccessor(int data);
 
 	//Destructor
