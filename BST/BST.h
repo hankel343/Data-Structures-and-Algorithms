@@ -55,11 +55,16 @@ private:
 	Node* find(Node* rootPtr, int data); //walks tree to find node with specified data from root node.
 	int getPredecessor(Node* p);
 	Node* getSubTreeMin(Node* p); //Returns the mem. address of the minimum value in the passed subtree.
-	Node* createMinimalBST(std::vector<int> array, int start, int end); //Overloaded recursive utility to public func. of same name
+	
+	/*Helper methods for BiTree::TPrint()*/
+	void PrintGraph(Node* pRoot, int nSpacingValue, int nLevelValue);
+	//Pre: A tree object has been initialized.
+	//Post: A horizontal graphical representation of the binary tree is printed to the console.
 
 public:
-	//Constructor
+	//Constructors
 	BST() : rootPtr{ nullptr } {};
+	BST(Node* root) : rootPtr{ root } {}; //overloaded
 
 	//Methods
 	void insert(int data);
@@ -73,7 +78,7 @@ public:
 	void printAscending();
 	void printDescending();
 	void printByLevel();
-	Node* createMinimalBST(std::vector<int> arr);
+	void TPrint();
 	Node* getSuccessor(int data);
 
 	//Destructor

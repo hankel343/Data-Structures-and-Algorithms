@@ -1,10 +1,16 @@
 #include <iostream>
 #include <chrono>
+#include <vector>
+#include <algorithm>
 #include "BST.h"
 using std::cout; using std::endl;
 
-int main() {
+Node* createMinimalBST(std::vector<int> arr);
+Node* createMinimalBST(std::vector<int> array, int start, int end); //Overloaded recursive utility to public func. of same name
+
+int main(void) {
 	BST myTree;
+	srand((unsigned)time(NULL));
 
 	myTree.insert(15);
 	myTree.insert(10);
@@ -17,6 +23,9 @@ int main() {
 	myTree.insert(16);
 	myTree.insert(25);
 	myTree.insert(27);
+
+	cout << "Graphical representation of the tree: \n";
+	myTree.TPrint();
 
 	cout << "Elements printed in ascending order: \n";
 	myTree.printAscending();
@@ -72,5 +81,44 @@ int main() {
 		cout << myTree.getSuccessor(data)->m_data << endl;
 	}
 
+	cout << "\n=======================================================\n";
+	cout << "Creating a tree of minimum height given a sorted array: \n";
+	cout << "=======================================================\n";
+
+	//Create minimum height tree
+	std::vector<int> nums(10);
+	unsigned long j;
+	for (j = 0; j < 10; j++) { //Populate nums with 10 random numbers 0 - 20
+		nums[j] = rand() % 20;
+	}
+	std::sort(nums.begin(), nums.end()); //Sort array of random numbers
+
+
+	Node* minHeightRoot{ createMinimalBST(nums) };
+	BST minHeightTree(minHeightRoot);
+	
+	cout << "\nGraphical representation of the min height tree: \n";
+	minHeightTree.TPrint();
+
 	return 0;
+}
+
+//=====================
+/* createMinimalTree */
+//=====================
+Node* createMinimalBST(std::vector<int> arr) {
+	return createMinimalBST(arr, 0, arr.size() - 1);
+}
+
+//Recursive util. to public function of same name
+Node* createMinimalBST(std::vector<int> arr, int start, int end) {
+	if (end < start) { //Array is empty or base of recursion has been found, will make bottom nodes leaves
+		return nullptr;
+	}
+
+	int mid = (start + end) / 2; //Determine the middle array index.
+	Node* n = new Node(arr[mid]); //Create new node with array at mid's value
+	n->left = createMinimalBST(arr, start, mid - 1); //n's left child will be assigned a return value (mem. address) 
+	n->right = createMinimalBST(arr, mid + 1, end); //Same situation as one line above but for n's right child
+	return n; //Return memory address to previous activation record in the stack
 }

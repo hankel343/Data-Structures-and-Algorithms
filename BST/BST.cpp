@@ -245,26 +245,6 @@ void BST::printByLevel() {
 	levelOrder(rootPtr);
 }
 
-//=====================
-/* createMinimalTree */
-//=====================
-Node* createMinimalBST(std::vector<int> arr) {
-	return createMinimalBST(arr, 0, arr.size() - 1);
-}
-
-//Recursive util. to public function of same name
-Node* createMinimalBST(std::vector<int> arr, int start, int end) {
-	if (end < start) { //Array is empty or base of recursion has been found, will make bottom nodes leaves
-		return nullptr;
-	}
-
-	int mid = (start + end) / 2; //Determine the middle array index.
-	Node* n = new Node(arr[mid]); //Create new node with array at mid's value
-	n->left = createMinimalBST(arr, start, mid - 1); //n's left child will be assigned a return value (mem. address) 
-	n->right = createMinimalBST(arr, mid + 1, end); //Same situation as one line above but for n's right child
-	return n; //Return memory address to previous activation record in the stack
-}
-
 //================
 /* getSuccessor */
 //================
@@ -315,6 +295,38 @@ Node* BST::getSubTreeMin(Node* p) {
 		p = p->left;
 	}
 	return p;
+}
+
+//================
+// TPrint() method
+//================
+
+
+void BST::TPrint() {
+	PrintGraph(rootPtr, 0, 1);
+}
+
+//Helper function to BST::TPrint()
+void BST::PrintGraph(Node* pRoot, int nSpacingValue, int nLevelValue) {
+	//Base case and end of recursive calls to PrintGraph()
+	if (pRoot == NULL)
+		return;
+
+	//Every level lower in the tree adds 1 to nSpacingValue which determines the number of tab characters to print
+	//The number of tab characters is the same for items at the same level, and this achieved through the recursive -
+	//structure of this function.
+	nSpacingValue += nLevelValue;
+
+	//Recursive call to travel to the bottom of the right subtree and work back up.
+	PrintGraph(pRoot->right, nSpacingValue, nLevelValue);
+
+	std::cout << std::endl;
+	for (int i = nLevelValue; i < nSpacingValue; i++) //For loop prints out tab characters one less than nSpacingValue
+		std::cout << '\t';
+	std::cout << pRoot->m_data << "\n";
+
+	//Recursive call to travel to the bottom of the left subtree and work back up.
+	PrintGraph(pRoot->left, nSpacingValue, nLevelValue);
 }
 
 //=============
